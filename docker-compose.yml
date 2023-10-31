@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    image: mongo
+    ports:
+      - '27017:27017'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_USER=sportenuser
+      - MONGO_INITDB_PWD=p4ssw0rd!
+      - MONGO_INITDB_DATABASE=sporten
+    volumes:
+      - ./docker/init-db.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - data:/data/db
+
+volumes:
+  data:
+    driver: local
+
